@@ -9,13 +9,13 @@
 ----------------- USAGE --------
 
 ### Questions (all for Ligue 1):
--What are the top X scorers?
--What is the actual ligue standing?
--What are the defenders/midfielder/etc of XXX team?
--Who is the coach of XXX team?
+- What are the top X scorers?
+- What is the actual ligue standing?
+- What are the defenders/midfielder/etc of XXX team?
+- Who is the coach of XXX team?
 Bonus:
--What are the match plained on the XXX days?
--What is the standing of XXX Team?
+- What are the match plained on the XXX days?
+- What is the standing of XXX Team?
 
 
 ### Themes it asnwers:
