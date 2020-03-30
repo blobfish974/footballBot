@@ -20,18 +20,18 @@ Bonus:
 
 ### Themes it asnwers:
 
-Top 10 scorer of Ligue 1: https://api.football-data.org/v2/competitions/FL1/scorers
+- Top 10 scorer of Ligue 1: https://api.football-data.org/v2/competitions/FL1/scorers
 	-> https://api.football-data.org/v2/competitions/FL1/scorers?limit=X for top X scorers
 
-Current Ligue 1 standing (top 3?) : https://api.football-data.org/v2/competitions/FL1/standings
+- Current Ligue 1 standing (top 3?) : https://api.football-data.org/v2/competitions/FL1/standings
 
-Show informations on 1 team: https://api.football-data.org/v2/teams/521 
+- Show informations on 1 team: https://api.football-data.org/v2/teams/521 
 	-> then ask for position (Goalkeeper, Defender, Midfielder, Attacker) and return list of players name
 	-> ask for coach ("role": "COACH" and not "role": "PLAYER")
 
-CL 2019 round of 16 matches: https://api.football-data.org/v2/competitions/CL/matches?stage=ROUND_OF_16
+- CL 2019 round of 16 matches: https://api.football-data.org/v2/competitions/CL/matches?stage=ROUND_OF_16
 
-Matchs planned on Ligue 1 day 11: https://api.football-data.org/v2/competitions/FL1/matches?matchday=11
+- Matchs planned on Ligue 1 day 11: https://api.football-data.org/v2/competitions/FL1/matches?matchday=11
 
 
 
