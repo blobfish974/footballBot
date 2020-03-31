@@ -7,6 +7,7 @@ const fbeamer = require('./fbeamer');
 const extractEntity = require('./football_data')
 const sandbox_standing = require('./sandbox_standing');
 const sandbox_scorer = require('./sandbox_scorer');
+const sandbox_teams = require('./sandbox_teams');
 
 const league_formater=require('./API/league_formatter');
 
@@ -50,6 +51,13 @@ server.post('/', (req, res, next) => {
             if (data.content === 'je t\'aime') {
                 await f.txt(data.sender, "moi aussi!!! <3 <3 <3 <3 <3");
             }
+
+            if (data.content === 'midfielder') {
+                await f.txt(data.sender, "Wesh ma gueule je cherche les milieux de terrain");
+            }
+
+
+
 
             else {
 
@@ -97,9 +105,16 @@ server.post('/', (req, res, next) => {
                     
                     case "top scorer":
                         await f.txt(data.sender, "seaching for the "+ league_found +" best scorer...");
-                        sandbox_scorer.top_scorer(league).then( async res => {
-                            await f.txt(data.sender, res);
-                        });
+                            sandbox_scorer.top_scorer(league).then( async res => {
+                                await f.txt(data.sender, res);
+                            });
+                        break;
+
+                    case "squad":
+                        await f.txt(data.sender, "seaching for the "+ team +" composition...");
+                        sandbox_teams.team_composition(team).then( async res => {
+                                await f.txt(data.sender, res);
+                            });
                         break;
 
                     default:

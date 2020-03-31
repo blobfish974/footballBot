@@ -66,3 +66,18 @@ exports.bestTeam = data => {
 	return return_string
 }
 
+exports.teamComposition = data => {
+	name=data.name
+
+	var return_string= "The team "+ name + " is composed of : \n";
+
+	var i;
+	num_results= data.squad.length
+	for (i = 0; i < num_results; i++) {
+
+		player_name=data.squad[i].name //0 for total ranking (exist home and exterior ranking too)
+	  	return_string+="   - " + player_name + "  \n";
+	}
+	return return_string
+}
+
