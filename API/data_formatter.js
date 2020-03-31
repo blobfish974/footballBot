@@ -36,7 +36,7 @@ exports.bestScorer = (data) => {
 exports.ligueStandings= data => {
 
 	ligue=data.competition.name
-	var return_string= "The best "+ ligue + " standing is: \n";
+	var return_string= "The "+ ligue + " standing is: \n";
 	
 	var i;
 	num_results= data.standings[0].table.length
