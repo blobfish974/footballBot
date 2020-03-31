@@ -53,22 +53,18 @@ server.post('/', (req, res, next) => {
                 const intent = extractEntity(data.message.nlp.entities, "intent");
                 console.log("intent : ", intent);
                 const season = extractEntity(data.message.nlp.entities, "season");
-                //console.log(season);
+                console.log("season : ",season);
                 const league = extractEntity(data.message.nlp.entities, "league");
                 console.log("league: ", league);
                 const team = extractEntity(data.message.nlp.entities, "team");
-                //console.log(team);
+                console.log("team: ", team);
 
                 switch(intent){
 
                     case "league standing":
-                        sandbox.best_team().then( async res => { 
-                            //await f.txt(data.sender, res["team"].name);
-                            res = JSON.stringify(res["team"]);
-                            //console.log(res);
+                        sandbox.league_standing().then( async res => { 
                             await f.txt(data.sender, res);
                         });
-                        //sandbox.league_standing();
                         break;
                     
                     case "top team":
@@ -76,7 +72,11 @@ server.post('/', (req, res, next) => {
                         break;
                     
                     case "top scorers":
-                        sandbox.top_scorers();
+                        await f.txt(data.sender, "seaching for the top scorers...");
+                        sandbox.top_scorers().then( async res => { 
+                            //console.log(res);
+                            await f.txt(data.sender, res);
+                        });
                         break;
                     
                     case "top scorer":
