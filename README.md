@@ -4,8 +4,8 @@
 
 **Table of Contents**
 - [📖 Introduction](#-introduction)
-- [💻 Installation](#-installation)
-
+- [🏗  Installation](#-installation)
+- [🕹 Use it!](#-use)
 
 
 ## 📖 Introduction
@@ -37,7 +37,7 @@ You will then see an interface like this:
 
 ![ngrok](./img/ngrok.png)
 
-note: the default port in our app is 3000 
+**Note**: the default port in our app is 3000 
 
 
 #### Connect to facebook developpers
@@ -52,15 +52,59 @@ You can find the verify token in config > development.json
 
 
 
+## 🕹 Use it!
 
 
+### Functionnalities
 
-## Notes for developping
+On a given league the chatbot can answer:
+- the current standing
+- the best team
+- the current top 10 scorers
+- the best scorer
+
+And on a given team the part of the squad wanted which could be:
+- goalkeepers
+- defenders
+- midfielders
+- attackers
+- coaches
+- all squad
+
+
+### Chatbot coverage
+
+Currently the chatbot cover the following championships:
+- Ligue 1
+- Premier League
+- Bundesliga
+
+And the following teams in Ligue 1:
+- PSG
+- Olympique de Marseille
+- Stade Rennais FC 1901
+- Lille OSC
+- Stade de Reims
+- OGC Nice
+- Olympique Lyonnais
+
+### Type of questions you can ask
+
+- What is the Bundesliga standing?
+- What is the best team in Ligue 1?
+- Who are the Premier League top scorers?
+- Who is Bundsligua best scorer?
+- Who are OL players? What is the PSG squad? 
+
+
+**Note**: if you ask for a squad composition you will be prompt to choose a part of the team (like defender for instance). After that, if you don't ask an other question but rather write an other position (like attacker), the chatbot will return the player for this postion within the same team.  
+
+## 🛠 Notes for developping
 
 ----------------- USAGE --------
 
 ### Questions (all for Ligue 1):
-- What are the top X scorers?
+- Who are the top X scorers?
 - What is the actual ligue standing?
 - What are the defenders/midfielder/etc of XXX team?
 - Who is the coach of XXX team?
