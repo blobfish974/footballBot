@@ -1,4 +1,55 @@
 # footbalBot
+> football chatbot
+
+
+**Table of Contents**
+- [📖 Introduction](#-introduction)
+- [💻 Installation](#-installation)
+
+
+
+## 📖 Introduction
+
+This chatbot answers football statistics in general. You can find a complete description of its functionnalities under the XXX chapter.
+
+Here is the link to our Faceboook Page: [Footbal Bot](https://www.facebook.com/Football-Bot-110345200596257).
+
+## 🏗 Installation 
+
+#### Launch the server
+
+First you need to launch the chatbot on your localhost in order to then expose it to Facebook Messenger.
+
+```sh
+❯ nodemon server.js
+```
+
+We recommend you to use nodemon (for developping) but it will work fine with the node command
+
+
+#### Ngrok
+
+To expose your local server use ngrok ([website](https://ngrok.com/)) 
+```sh
+❯ ./ngrok http 3000
+```
+You will then see an interface like this:
+
+![ngrok](./img/ngrok.png)
+
+note: the default port in our app is 3000 
+
+
+#### Connect to facebook developpers
+
+
+Now we need to connect our local server to our facebook app.
+To do so, go to: https://developers.facebook.com/
+
+Then under `Webhooks` click `EditSubscription` and change the callback URL with the one provided by ngrok (it should looks like `https://ad60c938.ngrok.io`).
+
+You can find the verify token in config > development.json
+
 
 
 
