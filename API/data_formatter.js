@@ -28,8 +28,8 @@ exports.bestScorer = (data) => {
 	num_goals=scorers[0].numberOfGoals
 	team_name=scorers[0].team.name
 
-	return_string= name + " (" +  team_name + ") with " + num_goals + " goals \n";
-	return return_json
+	return_string+= name + " (" +  team_name + ") with " + num_goals + " goals \n";
+	return return_string
 }
 
 

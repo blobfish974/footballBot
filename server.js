@@ -5,7 +5,8 @@ const bodyparser = require('body-parser');
 const config = require('./config');
 const fbeamer = require('./fbeamer');
 const extractEntity = require('./football_data')
-const sandbox = require('./sandbox2');
+const sandbox_standing = require('./sandbox_standing');
+const sandbox_scorer = require('./sandbox_scorer');
 
 
 const f = new fbeamer(config.FB);
@@ -50,46 +51,55 @@ server.post('/', (req, res, next) => {
             }
 
             else {
-                const intent = extractEntity(data.message.nlp.entities, "intent");
-                console.log("intent : ", intent);
-                const season = extractEntity(data.message.nlp.entities, "season");
-                console.log("season : ",season);
-                const league = extractEntity(data.message.nlp.entities, "league");
-                console.log("league: ", league);
-                const team = extractEntity(data.message.nlp.entities, "team");
-                console.log("team: ", team);
 
+                const entities=extractEntity(data.message.nlp.entities);
+                //console.log("entities: ", entities);
+                const intent =entities[0];
+                console.log("intent : ", intent);
+                const season =entities[1];
+                console.log("season : ", season);
+                const league =entities[2];
+                console.log("league : ", league);
+                const team =entities[3];
+                console.log("team : ", team);
+
+
+                var league_found=league || "FL1";
+                console.log("league_found: ", league_found);
                 switch(intent){
 
                     case "league standing":
-                        sandbox.league_standing().then( async res => { 
+                    await f.txt(data.sender, "seaching for the "+ league_found +" standing...");
+                        sandbox_standing.league_standing().then( async res => {
                             await f.txt(data.sender, res);
                         });
                         break;
                     
                     case "top team":
-                        sandbox.best_team();
+                    await f.txt(data.sender, "seaching for the "+ league_found +" best team...");
+                        sandbox_standing.best_team().then( async res => {
+                            await f.txt(data.sender, res);
+                        });
                         break;
                     
                     case "top scorers":
-                        await f.txt(data.sender, "seaching for the top scorers...");
-                        sandbox.top_scorers().then( async res => { 
-                            //console.log(res);
+                        await f.txt(data.sender, "seaching for the top "+ league_found +" scorers...");
+                        sandbox_scorer.top_scorers().then( async res => { 
                             await f.txt(data.sender, res);
                         });
                         break;
                     
                     case "top scorer":
-                        sandbox.top_scorer();
+                        await f.txt(data.sender, "seaching for the "+ league_found +" best scorer...");
+                        sandbox_scorer.top_scorer().then( async res => {
+                            await f.txt(data.sender, res);
+                        });
                         break;
 
                     default:
                         console.log("intent : ", intent, "team : ", team);
                         break;
                 }
-
-               
-                //if (entity == "fgdgfs")
             }
         }
         catch (e){

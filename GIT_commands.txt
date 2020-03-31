@@ -1,0 +1,60 @@
+*** Commands for setup ***
+
+1) create new branch on git 
+
+2) Copy files on local machine
+In your repository: 
+Git init 
+git clone https://github.com/blobfish974/footbalBot.git (OR Git pull <url>)
+
+3) Add the link to the remote repository to git 
+
+git remote add origin https://github.com/blobfish974/footbalBot.git
+
+4) Check if ok 
+
+git remote -v
+
+
+*** Push ***
+
+0) Optional: get status on file
+
+Git status
+
+1) Add files 
+
+Git add . OR git ad -a
+
+2) Add files to commit
+
+Git commit
+
+3) Push on the remote repository
+
+Git push origin <branch>
+
+
+
+
+*** Git useful ***
+
+Branche :
+	get current branch: Git branch
+	switch branch: git checkout <branch>
+	switch and create branch: git checkout -b <branch>
+
+
+*** Merge ***
+
+Si on veut merge develop dans sa branche (<sa branche>)
+
+1) changer de branche 
+	git checkout develop
+
+2) pull la branche de develop
+	git pull develop 
+
+3) retourner sur sa branche et merge
+	git checkout <sa branche>
+	git merge develop
