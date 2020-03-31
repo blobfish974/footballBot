@@ -1,4 +1,7 @@
 
+//functions in this module take inputs as json and return human readable strings
+
+
 
 exports.topScorers= (data) => {
 

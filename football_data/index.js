@@ -25,7 +25,8 @@ const extractEntityAll = (nlp) =>{
     return [intent,season,league,team];
 }
 
-const extractEntity = (nlp, entity) =>{
+//return the value for only one entity (given in parmameter)
+const extractEntity = (nlp, entity) =>{ 
     // should be filled by you .
     //console.log(entity);
     if (entity == "intent" && nlp.intent != undefined && nlp.intent[0].confidence >= 0.5){

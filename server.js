@@ -8,6 +8,7 @@ const extractEntity = require('./football_data')
 const sandbox_standing = require('./sandbox_standing');
 const sandbox_scorer = require('./sandbox_scorer');
 
+const league_formater=require('./API/league_formatter');
 
 const f = new fbeamer(config.FB);
 
@@ -63,35 +64,40 @@ server.post('/', (req, res, next) => {
                 const team =entities[3];
                 console.log("team : ", team);
 
-
-                var league_found=league || "FL1";
+                //to be display (user readable)
+                var league_found=league || "Ligue 1";
                 console.log("league_found: ", league_found);
+
+                //to be used (API readable)
+                //var league_formated=league_formater(league);
+                //console.log("league_formated: ", league_formated);
+                
                 switch(intent){
 
                     case "league standing":
                     await f.txt(data.sender, "seaching for the "+ league_found +" standing...");
-                        sandbox_standing.league_standing().then( async res => {
+                        sandbox_standing.league_standing(league).then( async res => {
                             await f.txt(data.sender, res);
                         });
                         break;
                     
                     case "top team":
                     await f.txt(data.sender, "seaching for the "+ league_found +" best team...");
-                        sandbox_standing.best_team().then( async res => {
+                        sandbox_standing.best_team(league).then( async res => {
                             await f.txt(data.sender, res);
                         });
                         break;
                     
                     case "top scorers":
-                        await f.txt(data.sender, "seaching for the top "+ league_found +" scorers...");
-                        sandbox_scorer.top_scorers().then( async res => { 
+                        await f.txt(data.sender, "seaching for the "+ league_found +" top scorers...");
+                        sandbox_scorer.top_scorers(league).then( async res => { 
                             await f.txt(data.sender, res);
                         });
                         break;
                     
                     case "top scorer":
                         await f.txt(data.sender, "seaching for the "+ league_found +" best scorer...");
-                        sandbox_scorer.top_scorer().then( async res => {
+                        sandbox_scorer.top_scorer(league).then( async res => {
                             await f.txt(data.sender, res);
                         });
                         break;

@@ -1,13 +1,14 @@
-const app = require('./app.js');
+const api_scraper_standing = require('./api_scraper_standing.js');
 const data_formatter = require('./API/data_formatter.js');
+const league_formater=require('./API/league_formatter');
 
 
-async function league_standing() {
+async function league_standing(league_name) {
+	var league_formated=league_formater(league_name);
+    console.log("league_formated: ", league_formated);
 	try {
-		console.log(`🏆  fetching FL1 standing...`);
-		const data = await app();
-		standing_data=data.FL1_standing
-		scorers_data=data.FL1_scorers
+		console.log("🏆  fetching " + league_formated + " standing...");
+		const standing_data = await api_scraper_standing(league_formated);
 		ranking=data_formatter.ligueStandings(standing_data)
 		console.log("ligueStandings:")
 		console.log(ranking)
@@ -18,16 +19,12 @@ async function league_standing() {
   }
 }
 
-async function best_team() {
+async function best_team(league_name) {
+	var league_formated=league_formater(league_name);
+    console.log("league_formated: ", league_formated);
 	try {
-		console.log(`🥇  fetching FL1 best team...`);
-		const data = await app();
-		//console.log(data)
-		standing_data=data.FL1_standing
-		scorers_data=data.FL1_scorers
-		//{standing, scorers}
-		//console.log(`🍿 ${standing.length} standing found.`);
-		//console.log(standing_data);
+		console.log("🥇  fetching " + league_formated + " best team...");
+		const standing_data = await api_scraper_standing(league_formated);
 		best_team=data_formatter.bestTeam(standing_data)
 		console.log("bestTeam:")
 		console.log(best_team)

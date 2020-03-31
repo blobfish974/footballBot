@@ -1,14 +1,13 @@
-const app = require('./app.js');
+const api_scraper_scorers= require('./api_scraper_scorers.js');
 const data_formatter = require('./API/data_formatter.js');
+const league_formater=require('./API/league_formatter');
 
-
-async function top_scorers() {
+async function top_scorers(league_name) {
+	var league_formated=league_formater(league_name);
+    console.log("league_formated: ", league_formated);
 	try {
-		console.log(`⚽️ fetching FL1 top scorers...`);
-		const data = await app();
-		standing_data=data.FL1_standing
-		scorers_data=data.FL1_scorers
-
+		console.log("⚽️ fetching "+ league_formated +" top scorers...");
+		const scorers_data = await api_scraper_scorers(league_formated);
 		top_scorers=data_formatter.topScorers(scorers_data)
 		console.log("topScorers:")
 		console.log(top_scorers)
@@ -20,12 +19,12 @@ async function top_scorers() {
 }
 
 
-async function top_scorer() {
+async function top_scorer(league_name) {
+	var league_formated=league_formater(league_name);
+    console.log("league_formated: ", league_formated);
 	try {
-		console.log(`⚽️ fetching FL1 top scorer...`);
-		const data = await app();
-		standing_data=data.FL1_standing
-		scorers_data=data.FL1_scorers
+		console.log("⚽️ fetching "+ league_formated + " best scorer...");
+		const scorers_data = await api_scraper_scorers(league_formated);
 		best_scorer=data_formatter.bestScorer(scorers_data)
 		console.log("bestScorer:")
 		console.log(best_scorer)
