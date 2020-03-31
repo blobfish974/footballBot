@@ -66,18 +66,88 @@ exports.bestTeam = data => {
 	return return_string
 }
 
-exports.teamComposition = data => {
+exports.teamComposition = (data,position) => { //position should be a valid string (in upper case)
 	name=data.name
 
-	var return_string= "The team "+ name + " is composed of : \n";
+	
 
 	var i;
 	num_results= data.squad.length
-	for (i = 0; i < num_results; i++) {
 
-		player_name=data.squad[i].name //0 for total ranking (exist home and exterior ranking too)
-	  	return_string+="   - " + player_name + "  \n";
+	if (position === 'GOALKEEPER'){
+		var return_string= "The "+ name + " goalkeepers are : \n";
+
+		for (i = 0; i < num_results; i++) {
+			if(data.squad[i].position=="Goalkeeper"){
+				player_name=data.squad[i].name 
+	  			return_string+=" - " + player_name + "  \n";
+	  	 	}
+		}
+		return return_string
 	}
-	return return_string
+
+	else if (position === 'DEFENDER'){
+		var return_string= "The "+ name + " defenders are : \n";
+
+		for (i = 0; i < num_results; i++) {
+			if(data.squad[i].position=="Defender"){
+				player_name=data.squad[i].name 
+	  			return_string+=" - " + player_name + "  \n";
+	  	 	}
+		}
+		return return_string
+	}
+
+	else if (position === 'MIDFIELDER'){
+		var return_string= "The "+ name + " midfielders are : \n";
+
+		for (i = 0; i < num_results; i++) {
+			if(data.squad[i].position=="Midfielder"){
+				player_name=data.squad[i].name 
+	  			return_string+=" - " + player_name + "  \n";
+	  	 	}
+		}
+		return return_string
+	}
+
+	else if (position === 'ATTACKER'){
+		var return_string= "The "+ name + " attackers are : \n";
+
+		for (i = 0; i < num_results; i++) {
+			if(data.squad[i].position=="Attacker"){
+				player_name=data.squad[i].name 
+	  			return_string+=" - " + player_name + "  \n";
+	  	 	}
+		}
+		return return_string
+	}
+
+	else if (position === 'COACH'){
+		var return_string= "The "+ name + " coaches are : \n";
+
+		for (i = 0; i < num_results; i++) {
+			if(data.squad[i].role != "PLAYER"){
+				player_name=data.squad[i].name 
+	  			return_string+=" - " + player_name + "  \n";
+	  	 	}
+		}
+		return return_string
+	}
+
+	//if no match we display the all squad
+	else{
+		var return_string= "The "+ name + " all squad is composed of : \n";
+
+		for (i = 0; i < num_results; i++) {
+		player_name=data.squad[i].name 
+	  	return_string+=" - " + player_name + "  \n";
+		}
+		return return_string
+	}
+
+	
 }
+
+
+
 

@@ -28,7 +28,7 @@ server.post('/', bodyparser.json({
     verify: f.verifySignature.call(f),
 }));
 
-
+var last_team_requested;
 
 server.post('/', (req, res, next) => {
     return f.incoming(req, res, async data => {
@@ -52,11 +52,24 @@ server.post('/', (req, res, next) => {
                 await f.txt(data.sender, "moi aussi!!! <3 <3 <3 <3 <3");
             }
 
-            if (data.content === 'midfielder') {
-                await f.txt(data.sender, "Wesh ma gueule je cherche les milieux de terrain");
+            var req_message=data.content.toUpperCase();
+            if (req_message === 'GOALKEEPER' || req_message === 'DEFENDER' || req_message === 'MIDFIELDER' ||
+                req_message === 'ATTACKER' || req_message === 'COACH' || req_message === 'ALL') {
+
+                if (typeof last_team_requested !== 'undefined') {
+                    // variable is not undefined or null
+                    console.log("last_team_requested defined! ",last_team_requested);
+                }
+                //even if last_team_requested is undefined the functions will assign a default team to fetch
+                
+                //await f.txt(data.sender, "Wesh ma gueule je cherche les "+req_message);
+
+                sandbox_teams.team_composition(last_team_requested,req_message).then( async res => {
+                                await f.txt(data.sender, res);
+                });
             }
 
-
+            
 
 
             else {
@@ -111,10 +124,20 @@ server.post('/', (req, res, next) => {
                         break;
 
                     case "squad":
-                        await f.txt(data.sender, "seaching for the "+ team +" composition...");
+
+                        console.log("last_team_requested in squad before ",last_team_requested);
+                        last_team_requested=team;
+                        console.log("last_team_requested in squad after ",last_team_requested);
+
+                        var squad_chooser="OK I'm looking for "+ team +" composition 🕵\n"
+                        squad_chooser+="Please answer with the part of the team you want: "
+                        squad_chooser+="goalkeeper, defender, midfielder, attacker, coach or all";
+                        await f.txt(data.sender, squad_chooser);
+
+                        /*await f.txt(data.sender, "seaching for the "+ team +" composition...");
                         sandbox_teams.team_composition(team).then( async res => {
                                 await f.txt(data.sender, res);
-                            });
+                            });*/
                         break;
 
                     default:
