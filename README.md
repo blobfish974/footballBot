@@ -1,4 +1,4 @@
-# footbalBot
+# footballBot
 > football chatbot
 
 
