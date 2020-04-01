@@ -5,7 +5,7 @@
 
 **Table of Contents**
 - [📖 Introduction](#--introduction)
-- [🕹 Use it!](#--use)
+- [🕹 Use it!](#--use-it)
 - [🛠 Notes for developping](#--notes)
 
 
