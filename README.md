@@ -57,7 +57,7 @@ You can find the verify token in config > development.json
 ## 🕹  Use it!
 
 
-### ⚙️ Functionnalities 
+### Functionnalities ⚙️
 
 On a given league the chatbot can answer:
 - the current standing
@@ -76,7 +76,7 @@ On a given team:
 - general informations on a club
 
 
-### 🌐 Chatbot coverage 
+### Chatbot coverage 🌐
 
 Currently the chatbot cover the following championships:
 - Ligue 1
@@ -92,7 +92,7 @@ And the following teams:
 - OGC Nice
 - Olympique Lyonnais
 
-### ❔  Type of questions you can ask 
+### Type of questions you can ask ❔
 
 - What is the Bundesliga standing?
 - What is the best team in Ligue 1?

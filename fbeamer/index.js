@@ -202,7 +202,7 @@ class FBeamer{
         });
     }
 
-    sendButtonClub(id_sender, site_url, email, phone) {
+    sendButtonClub(id_sender, site_url, email, phone) { //send a template with all the contact details for a club
         return new Promise (( resolve , reject ) => {
         let data = 
         { 
@@ -255,6 +255,61 @@ class FBeamer{
             });
         });
     }
+
+    sendButtonTeamSquadGeneral(id_sender) { //send a template to prompt user to choose general part of the squad
+        return new Promise (( resolve , reject ) => {
+        let data = 
+        { 
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"Choose the part of the squad you want:",
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"All squad",
+                "postback":"all_squad"
+              }/*,
+              {
+                "type":"postback",
+                "title":"Coaches",
+                "postback":"coaches"
+              },
+              {
+                "type":"postback",
+                "title":"Players",
+                "postback":"players"
+              }*/
+            ]
+          }
+        }
+        }
+        request({
+            uri: `https://graph.facebook.com/${apiVersion}/me/messages`,
+            qs:{
+                    access_token : this.pageAccessToken
+            },
+            method: 'POST',
+            json: {
+                recipient: {id:id_sender},
+                message: data,
+            }
+        }, (error, response, body) => {
+                if (!error && response.statusCode === 200) {
+                    console.log("button sent!");
+                    resolve({
+                        mid: body . message_id
+                    });
+
+                } else {
+                    console.log("button error 😰!");
+                    reject(error);
+                }
+            });
+        });
+    }
+
 
 }
 

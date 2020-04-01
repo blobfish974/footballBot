@@ -153,7 +153,7 @@ exports.teamComposition = (data,position) => { //position should be a valid stri
 	num_results= data.squad.length
 
 	if (position === 'GOALKEEPER'){
-		var return_string= "🥅 The "+ name + " goalkeepers are : \n";
+		var return_string= "🥅 🧤 The "+ name + " goalkeepers are : \n";
 
 		for (i = 0; i < num_results; i++) {
 			if(data.squad[i].position=="Goalkeeper"){
@@ -165,7 +165,7 @@ exports.teamComposition = (data,position) => { //position should be a valid stri
 	}
 
 	else if (position === 'DEFENDER'){
-		var return_string= "🛡 The "+ name + " defenders are : \n";
+		var return_string= "🛡 🚧 The "+ name + " defenders are : \n";
 
 		for (i = 0; i < num_results; i++) {
 			if(data.squad[i].position=="Defender"){
@@ -177,7 +177,7 @@ exports.teamComposition = (data,position) => { //position should be a valid stri
 	}
 
 	else if (position === 'MIDFIELDER'){
-		var return_string= "⛹️ The "+ name + " midfielders are : \n";
+		var return_string= "⛹️ 🧠 The "+ name + " midfielders are : \n";
 
 		for (i = 0; i < num_results; i++) {
 			if(data.squad[i].position=="Midfielder"){

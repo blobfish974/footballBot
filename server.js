@@ -35,7 +35,7 @@ server.post('/', (req, res, next) => {
         try {
             //HERE TO HANDLE TEXT
             if(data.type=='text'){
-                console.log("TEEEXXXTE MAMEEEENNNE");
+                console.log("RECEIVED TEXT");
                 //var message = req.body.entry[0].messaging[0].message;
                 //console.log(message);
                 //console.log(message.nlp.entities);
@@ -154,6 +154,8 @@ server.post('/', (req, res, next) => {
                             squad_chooser+="goalkeeper, defender, midfielder, attacker, coach or all";
                             await f.txt(data.sender, squad_chooser);
 
+                            await f.sendButtonTeamSquadGeneral(data.sender);
+
                             /*await f.txt(data.sender, "seaching for the "+ team +" composition...");
                             sandbox_teams.team_composition(team).then( async res => {
                                     await f.txt(data.sender, res);
@@ -165,12 +167,7 @@ server.post('/', (req, res, next) => {
                                     var text=res[1];
                                     var website_url=res[2];
                                     var email=res[3];
-                                    email="mailto:"+email;
-                                    
-                                    //mailto:olympique-lyonnais@lrafoot.org
-                                    email="https://tinyurl.com/udos9xm";
-                                    //mailto:communaute@psg.fr
-                                    //https://tinyurl.com/uj7m6uc
+                                    //the command 'mailto:' is blocked par Facebook so we had to create custom URL
                                     console.log("MAIL LINK=",email);
                                     var phone_number=res[4];
                                     await f.sendImageMessage(data.sender, image_url);
@@ -187,7 +184,8 @@ server.post('/', (req, res, next) => {
 
             //HERE WE HANDLE POSTBACKS
             else if(data.type=='postback'){
-                console.log("POSTBACK MAMEEEENNNE");
+                console.log("RECEIVED POSTBACK");
+                console.log("Data:",data);
             }
 
             
