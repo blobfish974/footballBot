@@ -80,6 +80,19 @@ class FBeamer{
         }
     }
 
+    postbackHandler(obj){
+        let sender = obj.sender.id;
+        let postback = obj.postback;
+        if (postback.payload){
+            let obj = {
+                sender,
+                type: 'postback',
+                payload : postback.payload,
+            }
+            return obj;
+        }
+    }
+
 
     incoming(req, res, cb) {
         res.sendStatus(200);
@@ -97,12 +110,18 @@ class FBeamer{
                         //console.log("timeOfMessage :" + messageObj.timestamp);
                         //console.log("message : " + messageObj.message.text);
                         //console.log(this.messageHandler(messageObj)); 
-                        //console.log(messageObj.postback)
+                        
                         if (messageObj.postback){
                             // handle postbacks
+
+                            //console.log("messageObj: ",messageObj);
+                            //console.log("this.postbackHandler(messageObj): ",this.postbackHandler(messageObj));
+                            return cb(this.postbackHandler(messageObj));
                         }
+
                         else{
                             // handle messages
+                            //console.log("(this.messageHandler(messageObj)): ",(this.messageHandler(messageObj)));
                             return cb(this.messageHandler(messageObj));
                         }
                     })
@@ -145,6 +164,201 @@ class FBeamer{
             }
         }
         return this.sendMessage(obj);
+    }
+
+    sendImageMessage(id_sender, image_url) {
+        return new Promise (( resolve , reject ) => {
+        let data = 
+            { 
+              "attachment":{
+                "type":"image",
+                "payload":{
+                  "url":image_url
+                }
+              }
+            }
+        request({
+            uri: `https://graph.facebook.com/${apiVersion}/me/messages`,
+            qs:{
+                    access_token : this.pageAccessToken
+            },
+            method: 'POST',
+            json: {
+                recipient: {id:id_sender},
+                message: data,
+            }
+        }, (error, response, body) => {
+                if (!error && response.statusCode === 200) {
+                    console.log("image sent!");
+                    resolve({
+                        mid: body . message_id
+                    });
+
+                } else {
+                    console.log("image error 😰!");
+                    reject(error);
+                }
+            });
+        });
+    }
+
+    sendButtonClub(id_sender, site_url, email, phone) { //send a template with all the contact details for a club
+        return new Promise (( resolve , reject ) => {
+        let data = 
+        { 
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"Here are the club contact details",
+            "buttons":[
+              {
+                "type":"web_url",
+                "url":site_url,
+                "title":"Website"
+              },
+              {
+                "type":"web_url",
+                "url":email,
+                "title":"Send email"
+              },
+              {
+                "type":"phone_number",
+                "title":"Call the club",
+                "payload":phone
+              }
+            ]
+          }
+        }
+        }
+        request({
+            uri: `https://graph.facebook.com/${apiVersion}/me/messages`,
+            qs:{
+                    access_token : this.pageAccessToken
+            },
+            method: 'POST',
+            json: {
+                recipient: {id:id_sender},
+                message: data,
+            }
+        }, (error, response, body) => {
+                if (!error && response.statusCode === 200) {
+                    console.log("button sent!");
+                    resolve({
+                        mid: body . message_id
+                    });
+
+                } else {
+                    console.log("button error 😰!");
+                    reject(error);
+                }
+            });
+        });
+    }
+
+    sendButtonTeamSquad(id_sender) { //send a template to prompt user to choose part of the squad
+        return new Promise (( resolve , reject ) => {
+        /*let data = 
+        { 
+        "attachment":{
+          "type":"template",
+          "payload":{
+            "template_type":"button",
+            "text":"Choose the part of the squad you want:",
+            "buttons":[
+              {
+                "type":"postback",
+                "title":"All squad",
+                "postback":"all_squad"
+              },
+              {
+                "type":"postback",
+                "title":"Coaches",
+                "postback":"coaches"
+              },
+              {
+                "type":"postback",
+                "title":"Players",
+                "postback":"players"
+              }
+            ]
+          }
+        }
+        }*/
+    let data = 
+    { 
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type": "generic",
+        "elements": [
+          {
+            "title": "Choose the part of the squad you want:",
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "goalkeepers 🥅 🧤",
+                "payload": "goalkeepers"
+              },
+              {
+                "type": "postback",
+                "title": "defenders 🛡 🚧 ",
+                "payload": "defenders"
+              },
+              {
+                "type": "postback",
+                "title": "midfielders ⛹️ 🧠",
+                "payload": "midfielders"
+              }
+            ]
+          },
+          {
+            "title": "Choose the part of the squad you want:",
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "strikers 🎯",
+                "payload": "strikers"
+              },
+              {
+                "type": "postback",
+                "title": "coaches 👨‍💼",
+                "payload": "coaches"
+              },
+              {
+                "type": "postback",
+                "title": "all squad 🎽",
+                "payload": "all_squad"
+              }
+            ]
+          }
+        ]
+      }
+    }
+    }
+        request({
+            uri: `https://graph.facebook.com/${apiVersion}/me/messages`,
+            qs:{
+                    access_token : this.pageAccessToken
+            },
+            method: 'POST',
+            json: {
+                recipient: {id:id_sender},
+                message: data,
+            }
+        }, (error, response, body) => {
+                if (!error && response.statusCode === 200) {
+                    console.log("button sent!");
+                    resolve({
+                        mid: body . message_id
+                    });
+
+                } else {
+                    console.log("button error 😰!");
+                    reject(error);
+                }
+            });
+        });
     }
 
 
