@@ -63,7 +63,7 @@ server.post('/', (req, res, next) => {
                 }
 
                 else if (data.content === 'b') {
-                    await f.sendButton(data.sender, "c'est pas nice!");
+                    await f.sendButtonTeamSquad(data.sender);
                 }
 
                 
@@ -149,12 +149,12 @@ server.post('/', (req, res, next) => {
                             last_team_requested=team;
                             console.log("last_team_requested in squad after ",last_team_requested);
 
-                            var squad_chooser="OK I'm looking for "+ team +" composition 📋🕵\n"
-                            squad_chooser+="Please answer with the part of the team you want: "
-                            squad_chooser+="goalkeeper, defender, midfielder, attacker, coach or all";
+                            var squad_chooser="I'm looking for "+ team +" composition 📋🕵\n"
+                            //squad_chooser+="Please answer with the part of the team you want: "
+                            //squad_chooser+="goalkeeper, defender, midfielder, attacker, coach or all";
                             await f.txt(data.sender, squad_chooser);
 
-                            await f.sendButtonTeamSquadGeneral(data.sender);
+                            await f.sendButtonTeamSquad(data.sender);
 
                             /*await f.txt(data.sender, "seaching for the "+ team +" composition...");
                             sandbox_teams.team_composition(team).then( async res => {
@@ -184,10 +184,61 @@ server.post('/', (req, res, next) => {
 
             //HERE WE HANDLE POSTBACKS
             else if(data.type=='postback'){
+
                 console.log("RECEIVED POSTBACK");
                 console.log("Data:",data);
-            }
 
+                //WWhat is the team????
+                console.log("last_team_requested ",last_team_requested);
+                //last_team_requested=team;
+                //console.log("last_team_requested in squad after ",last_team_requested);
+                if (typeof last_team_requested == 'undefined') {
+                        // variable is not undefined or null
+                        console.log("last_team_requested undefined! ",last_team_requested);
+                }
+
+                //switch on the position asked
+                var payload=data.payload;
+                
+                switch(payload){
+                    case "goalkeepers":
+                        sandbox_teams.team_composition(last_team_requested,"GOALKEEPER").then( async res => {
+                                    await f.txt(data.sender, res);
+                        });
+                        break;
+
+                    case "defenders":
+                        sandbox_teams.team_composition(last_team_requested,"DEFENDER").then( async res => {
+                                    await f.txt(data.sender, res);
+                        });
+                        break;
+
+                    case "midfielders":
+                        sandbox_teams.team_composition(last_team_requested,"MIDFIELDER").then( async res => {
+                                    await f.txt(data.sender, res);
+                        });
+                        break;
+
+                    case "strikers":
+                        sandbox_teams.team_composition(last_team_requested,"ATTACKER").then( async res => {
+                                    await f.txt(data.sender, res);
+                        });
+                        break;
+
+                    case "coaches":
+                        sandbox_teams.team_composition(last_team_requested,"COACH").then( async res => {
+                                    await f.txt(data.sender, res);
+                        });
+                        break;
+
+                    default: //by default -> all squad
+                        sandbox_teams.team_composition(last_team_requested,"ALL").then( async res => {
+                                    await f.txt(data.sender, res);
+                        });
+                        break;
+
+                }
+            }
             
         }
         catch (e){

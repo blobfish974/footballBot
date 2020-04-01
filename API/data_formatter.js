@@ -148,12 +148,13 @@ exports.teamInformations = data => {// return an array with image, text, website
 }
 
 exports.teamComposition = (data,position) => { //position should be a valid string (in upper case)
-	name=data.name
+	//name=data.name
+	name=data.shortName;
 	var i;
 	num_results= data.squad.length
 
 	if (position === 'GOALKEEPER'){
-		var return_string= "🥅 🧤 The "+ name + " goalkeepers are : \n";
+		var return_string=  name + " goalkeepers are : \n";
 
 		for (i = 0; i < num_results; i++) {
 			if(data.squad[i].position=="Goalkeeper"){
@@ -165,7 +166,7 @@ exports.teamComposition = (data,position) => { //position should be a valid stri
 	}
 
 	else if (position === 'DEFENDER'){
-		var return_string= "🛡 🚧 The "+ name + " defenders are : \n";
+		var return_string= name + " defenders are : \n";
 
 		for (i = 0; i < num_results; i++) {
 			if(data.squad[i].position=="Defender"){
@@ -177,7 +178,7 @@ exports.teamComposition = (data,position) => { //position should be a valid stri
 	}
 
 	else if (position === 'MIDFIELDER'){
-		var return_string= "⛹️ 🧠 The "+ name + " midfielders are : \n";
+		var return_string= name + " midfielders are : \n";
 
 		for (i = 0; i < num_results; i++) {
 			if(data.squad[i].position=="Midfielder"){
@@ -189,7 +190,7 @@ exports.teamComposition = (data,position) => { //position should be a valid stri
 	}
 
 	else if (position === 'ATTACKER'){
-		var return_string= "🎯 The "+ name + " attackers are : \n";
+		var return_string= name + " attackers are : \n";
 
 		for (i = 0; i < num_results; i++) {
 			if(data.squad[i].position=="Attacker"){
@@ -201,7 +202,7 @@ exports.teamComposition = (data,position) => { //position should be a valid stri
 	}
 
 	else if (position === 'COACH'){
-		var return_string= "👨‍💼 The "+ name + " coaches are : \n";
+		var return_string= name + " coaches are : \n";
 
 		for (i = 0; i < num_results; i++) {
 			if(data.squad[i].role != "PLAYER"){
@@ -214,7 +215,7 @@ exports.teamComposition = (data,position) => { //position should be a valid stri
 
 	//if no match we display the all squad
 	else{
-		var return_string= "🎽 The "+ name + " all squad is composed of : \n";
+		var return_string= name + " all squad is composed of : \n";
 
 		for (i = 0; i < num_results; i++) {
 		player_name=data.squad[i].name 

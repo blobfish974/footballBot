@@ -256,9 +256,9 @@ class FBeamer{
         });
     }
 
-    sendButtonTeamSquadGeneral(id_sender) { //send a template to prompt user to choose general part of the squad
+    sendButtonTeamSquad(id_sender) { //send a template to prompt user to choose part of the squad
         return new Promise (( resolve , reject ) => {
-        let data = 
+        /*let data = 
         { 
         "attachment":{
           "type":"template",
@@ -270,7 +270,7 @@ class FBeamer{
                 "type":"postback",
                 "title":"All squad",
                 "postback":"all_squad"
-              }/*,
+              },
               {
                 "type":"postback",
                 "title":"Coaches",
@@ -280,11 +280,62 @@ class FBeamer{
                 "type":"postback",
                 "title":"Players",
                 "postback":"players"
-              }*/
+              }
             ]
           }
         }
-        }
+        }*/
+    let data = 
+    { 
+    "attachment":{
+      "type":"template",
+      "payload":{
+        "template_type": "generic",
+        "elements": [
+          {
+            "title": "Choose the part of the squad you want:",
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "goalkeepers 🥅 🧤",
+                "payload": "goalkeepers"
+              },
+              {
+                "type": "postback",
+                "title": "defenders 🛡 🚧 ",
+                "payload": "defenders"
+              },
+              {
+                "type": "postback",
+                "title": "midfielders ⛹️ 🧠",
+                "payload": "midfielders"
+              }
+            ]
+          },
+          {
+            "title": "Choose the part of the squad you want:",
+            "buttons": [
+              {
+                "type": "postback",
+                "title": "strikers 🎯",
+                "payload": "strikers"
+              },
+              {
+                "type": "postback",
+                "title": "coaches 👨‍💼",
+                "payload": "coaches"
+              },
+              {
+                "type": "postback",
+                "title": "all squad 🎽",
+                "payload": "all_squad"
+              }
+            ]
+          }
+        ]
+      }
+    }
+    }
         request({
             uri: `https://graph.facebook.com/${apiVersion}/me/messages`,
             qs:{
