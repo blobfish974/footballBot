@@ -27,7 +27,7 @@ async function team_information(team_name) {
 		team_data_formatted=data_formatter.teamInformations(team_data)
 		console.log("team_data_formatted:")
 		console.log(team_data_formatted)
-		return team_data_formatted
+		return team_data_formatted //[image, text, website url, email, phone number]
 	} catch (e) {
     console.error(e);
     process.exit(1);
