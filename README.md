@@ -11,7 +11,7 @@
 
 
 
-## 📖  Introduction
+## 📖 Introduction
 
 This chatbot answers football statistics in general. You can find a complete description of its functionnalities under the next chapter.
 
@@ -19,7 +19,7 @@ Here is the link to our Faceboook Page: [Footbal Bot](https://www.facebook.com/F
 
 If you want to try our chatbot, you can reach and ask us. We will be pleased to grant you an acces.
 
-## 🕹  Use it!
+## 🕹 Use it!
 
 
 ### Functionnalities ⚙️
