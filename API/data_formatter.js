@@ -52,12 +52,12 @@ exports.ligueStandings= data => {
 	position=data.standings[0].table[1].position //0 for total ranking (exist home and exterior ranking too)
 	name=data.standings[0].table[1].team.name
 	points=data.standings[0].table[1].points
-  	return_string+="   - 🥈: " + ": " + name + " with " + points + " points \n";
+  	return_string+="   - 🥈: "  + name + " with " + points + " points \n";
 
 	position=data.standings[0].table[2].position //0 for total ranking (exist home and exterior ranking too)
 	name=data.standings[0].table[2].team.name
 	points=data.standings[0].table[2].points
-	return_string+="   - 🥉: " + ": " + name + " with " + points + " points \n";
+	return_string+="   - 🥉: " + name + " with " + points + " points \n";
 
 	for (i = 3; i < num_results; i++) {
 		key='team'+i.toString();
@@ -90,7 +90,8 @@ exports.teamInformations = data => {// return an array with image, text, website
 	//1rst let's find the appropriate image and email for the club!
 	//the command 'mailto:' is blocked par Facebook so we had to create custom URL
 	var image_url="https://upload.wikimedia.org/wikipedia/fr/thumb/4/43/Logo_Olympique_de_Marseille.svg/189px-Logo_Olympique_de_Marseille.svg.png";
-	var email="https://tinyurl.com/uhuq52g";
+	//var email="https://tinyurl.com/uhuq52g";
+	var email="http://tiny.cc/lwgamz";
 
 	tla=data.tla //initials from the club in the API
 	if (tla === 'PSG'){
@@ -121,12 +122,13 @@ exports.teamInformations = data => {// return an array with image, text, website
     else if (tla === 'LYO'){
 		image_url="https://upload.wikimedia.org/wikipedia/fr/thumb/e/e2/Olympique_lyonnais_%28logo%29.svg/208px-Olympique_lyonnais_%28logo%29.svg.png";
 		//mailto:olympique-lyonnais@lrafoot.org
-        email="https://tinyurl.com/udos9xm";
+        email="http://tiny.cc/i4gamz";
 	}          
 	else{ //by default = OM
 		image_url="https://upload.wikimedia.org/wikipedia/fr/thumb/4/43/Logo_Olympique_de_Marseille.svg/189px-Logo_Olympique_de_Marseille.svg.png";
     	//mailto:om@olympiquedemarseille.com
-    	email="https://tinyurl.com/uhuq52g";
+    	email="http://tiny.cc/lwgamz";
+    	
     }
 
     //Then we generate the text for the club
@@ -135,13 +137,14 @@ exports.teamInformations = data => {// return an array with image, text, website
 	var founded=data.founded;
 	var venue=data.venue;
 	var website=data.website;
-	//var email=data.email;
+	// email=data.email; //we reset the true email
 	var phone=data.phone;
 
+	//email="teststes";
 
 	var return_string = "The "+ name + " was founded in " + founded;
 	return_string += ". Its official stadium is " + venue;
-	//return_string += ".\nWebsite: " + website;
+	//return_string += ".\nEmail: " + email;
 
 
 	return [image_url,return_string,website,email,phone];

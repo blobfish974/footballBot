@@ -145,6 +145,7 @@ class FBeamer{
                         mid: body . message_id
                     });
                 } else {
+                    console.log(response);
                     reject(error);
                 }
             });
@@ -210,18 +211,20 @@ class FBeamer{
           "type":"template",
           "payload":{
             "template_type":"button",
-            "text":"Here are the club contact details",
+            "text":"Contact details: ",
             "buttons":[
               {
                 "type":"web_url",
                 "url":site_url,
                 "title":"Website"
               },
+              /*
               {
                 "type":"web_url",
                 "url":email,
                 "title":"Send email"
-              },
+              },*/
+              
               {
                 "type":"phone_number",
                 "title":"Call the club",
@@ -250,6 +253,8 @@ class FBeamer{
 
                 } else {
                     console.log("button error 😰!");
+                    console.log(error);
+                    console.log(response);
                     reject(error);
                 }
             });
