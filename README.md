@@ -5,13 +5,13 @@
 
 **Table of Contents**
 - [📖 Introduction](#-introduction)
-- [🕹 Use it!](#-use)
-- [🛠 Notes for developping](#-notes)
+- [🕹 Use it!](#-use-it)
+- [🛠 Notes for developping](#-notes-for-developping)
 
 
 
 
-## 📖  Introduction
+## 📖 Introduction
 
 This chatbot answers football statistics in general. You can find a complete description of its functionnalities under the next chapter.
 
@@ -19,7 +19,7 @@ Here is the link to our Faceboook Page: [Football Bot](https://www.facebook.com/
 
 If you want to try our chatbot, you can reach and ask us. We will be pleased to grant you an acces.
 
-## 🕹  Use it!
+## 🕹 Use it!
 
 
 ### Functionnalities ⚙️
