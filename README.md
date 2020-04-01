@@ -2,19 +2,21 @@
 > football chatbot
 
 
+
 **Table of Contents**
 - [📖 Introduction](#-introduction)
 - [🏗  Installation](#-installation)
 - [🕹 Use it!](#-use)
 
 
-## 📖 Introduction
+
+## 📖  Introduction
 
 This chatbot answers football statistics in general. You can find a complete description of its functionnalities under the XXX chapter.
 
 Here is the link to our Faceboook Page: [Footbal Bot](https://www.facebook.com/Football-Bot-110345200596257).
 
-## 🏗 Installation 
+## 🏗  Installation 
 
 #### Launch the server
 
@@ -52,7 +54,7 @@ You can find the verify token in config > development.json
 
 
 
-## 🕹 Use it!
+## 🕹  Use it!
 
 
 ### Functionnalities
@@ -63,13 +65,15 @@ On a given league the chatbot can answer:
 - the current top 10 scorers
 - the best scorer
 
-And on a given team the part of the squad wanted which could be:
-- goalkeepers
-- defenders
-- midfielders
-- attackers
-- coaches
-- all squad
+On a given team:
+- a part of the squad composition which could be:
+    - goalkeepers
+    - defenders
+    - midfielders
+    - attackers
+    - coaches
+    - all squad
+- general informations on a club
 
 
 ### Chatbot coverage
@@ -79,7 +83,7 @@ Currently the chatbot cover the following championships:
 - Premier League
 - Bundesliga
 
-And the following teams in Ligue 1:
+And the following teams:
 - PSG
 - Olympique de Marseille
 - Stade Rennais FC 1901
@@ -95,9 +99,12 @@ And the following teams in Ligue 1:
 - Who are the Premier League top scorers?
 - Who is Bundsligua best scorer?
 - Who are OL players? What is the PSG squad? 
+- Give me informations on OL
+
+**Note**: if you ask for a squad composition you will be prompt to choose a part of the team (like defender for instance). After that, if you don't ask an other question but rather write an other position (like attacker), the chatbot will return the players for this position within the same team.  
 
 
-**Note**: if you ask for a squad composition you will be prompt to choose a part of the team (like defender for instance). After that, if you don't ask an other question but rather write an other position (like attacker), the chatbot will return the player for this postion within the same team.  
+
 
 ## 🛠 Notes for developping
 

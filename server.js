@@ -45,7 +45,18 @@ server.post('/', (req, res, next) => {
             }
 
             if (data.content === 'a') {
-                await f.txt(data.sender, "ok bien reçu");
+                //await f.txt(data.sender, "ok bien reçu");
+                console.log("try to send image");
+                //await f.sendImageMessage(data.sender, "https://via.placeholder.com/150");
+                const psg_logo="https://upload.wikimedia.org/wikipedia/fr/thumb/4/4a/Paris_Saint-Germain_Football_Club_%28logo%29.svg/240px-Paris_Saint-Germain_Football_Club_%28logo%29.svg.png";
+                const om_logo="https://upload.wikimedia.org/wikipedia/fr/thumb/4/43/Logo_Olympique_de_Marseille.svg/189px-Logo_Olympique_de_Marseille.svg.png";
+                const ol_logo="https://upload.wikimedia.org/wikipedia/fr/thumb/e/e2/Olympique_lyonnais_%28logo%29.svg/208px-Olympique_lyonnais_%28logo%29.svg.png"
+                const losc_logo="https://upload.wikimedia.org/wikipedia/fr/thumb/7/70/Logo_LOSC_Lille.svg/135px-Logo_LOSC_Lille.svg.png";
+                const reims_logo="https://upload.wikimedia.org/wikipedia/fr/thumb/0/02/Logo_Stade_Reims_1999.svg/240px-Logo_Stade_Reims_1999.svg.png";
+                const nice_logo="https://upload.wikimedia.org/wikipedia/fr/thumb/b/b1/Logo_OGC_Nice_2013.svg/193px-Logo_OGC_Nice_2013.svg.png";
+                const rennes_logo="https://upload.wikimedia.org/wikipedia/fr/thumb/e/e9/Logo_Stade_Rennais_FC.svg/217px-Logo_Stade_Rennais_FC.svg.png";
+                await f.sendImageMessage(data.sender, rennes_logo);
+                await f.txt(data.sender, "c'est pas nice!");
             }
 
             if (data.content === 'je t\'aime') {
@@ -96,28 +107,28 @@ server.post('/', (req, res, next) => {
                 switch(intent){
 
                     case "league standing":
-                    await f.txt(data.sender, "seaching for the "+ league_found +" standing...");
+                    await f.txt(data.sender, "I'm searching for the "+ league_found +" standing... 🔎🏅");
                         sandbox_standing.league_standing(league).then( async res => {
                             await f.txt(data.sender, res);
                         });
                         break;
                     
                     case "top team":
-                    await f.txt(data.sender, "seaching for the "+ league_found +" best team...");
+                    await f.txt(data.sender, "I'm searching for the "+ league_found +" best team... 💪");
                         sandbox_standing.best_team(league).then( async res => {
                             await f.txt(data.sender, res);
                         });
                         break;
                     
                     case "top scorers":
-                        await f.txt(data.sender, "seaching for the "+ league_found +" top scorers...");
+                        await f.txt(data.sender, "I'm searching for the "+ league_found +" top scorers...");
                         sandbox_scorer.top_scorers(league).then( async res => { 
                             await f.txt(data.sender, res);
                         });
                         break;
                     
                     case "top scorer":
-                        await f.txt(data.sender, "seaching for the "+ league_found +" best scorer...");
+                        await f.txt(data.sender, "I'm searching for the "+ league_found +" best scorer...");
                             sandbox_scorer.top_scorer(league).then( async res => {
                                 await f.txt(data.sender, res);
                             });
@@ -129,7 +140,7 @@ server.post('/', (req, res, next) => {
                         last_team_requested=team;
                         console.log("last_team_requested in squad after ",last_team_requested);
 
-                        var squad_chooser="OK I'm looking for "+ team +" composition 🕵\n"
+                        var squad_chooser="OK I'm looking for "+ team +" composition 📋🕵\n"
                         squad_chooser+="Please answer with the part of the team you want: "
                         squad_chooser+="goalkeeper, defender, midfielder, attacker, coach or all";
                         await f.txt(data.sender, squad_chooser);
@@ -139,7 +150,14 @@ server.post('/', (req, res, next) => {
                                 await f.txt(data.sender, res);
                             });*/
                         break;
-
+                    case "information":
+                        sandbox_teams.team_information(team).then( async res => {// return [image_url,return_string]
+                                var image_url=res[0];
+                                var text=res[1];
+                                await f.sendImageMessage(data.sender, image_url);
+                                await f.txt(data.sender, text);
+                        });
+                        break;
                     default:
                         console.log("intent : ", intent, "team : ", team);
                         break;

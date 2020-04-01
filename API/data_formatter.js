@@ -66,11 +66,53 @@ exports.bestTeam = data => {
 	return return_string
 }
 
+exports.teamInformations = data => {// return an array with image and text
+
+	return_array=[]
+
+
+	//1rst let's find the appropriate image for the club!
+	var image_url="https://upload.wikimedia.org/wikipedia/fr/thumb/4/43/Logo_Olympique_de_Marseille.svg/189px-Logo_Olympique_de_Marseille.svg.png";
+	tla=data.tla //initials from the club in the API
+	if (tla === 'PSG'){
+		image_url="https://upload.wikimedia.org/wikipedia/fr/thumb/4/4a/Paris_Saint-Germain_Football_Club_%28logo%29.svg/240px-Paris_Saint-Germain_Football_Club_%28logo%29.svg.png";
+	}
+	else if (tla === 'NIC'){
+		image_url="https://upload.wikimedia.org/wikipedia/fr/thumb/b/b1/Logo_OGC_Nice_2013.svg/193px-Logo_OGC_Nice_2013.svg.png";
+    }
+    else if (tla === 'REN'){
+		image_url="https://upload.wikimedia.org/wikipedia/fr/thumb/e/e9/Logo_Stade_Rennais_FC.svg/217px-Logo_Stade_Rennais_FC.svg.png";
+	}
+	else if (tla === 'LIL'){
+		image_url="https://upload.wikimedia.org/wikipedia/fr/thumb/7/70/Logo_LOSC_Lille.svg/135px-Logo_LOSC_Lille.svg.png";
+	}
+	else if (tla === 'SDR'){
+		image_url="https://upload.wikimedia.org/wikipedia/fr/thumb/0/02/Logo_Stade_Reims_1999.svg/240px-Logo_Stade_Reims_1999.svg.png";
+	}
+    else if (tla === 'LYO'){
+		image_url="https://upload.wikimedia.org/wikipedia/fr/thumb/e/e2/Olympique_lyonnais_%28logo%29.svg/208px-Olympique_lyonnais_%28logo%29.svg.png";
+	}          
+	else{ //bu default = OM
+		image_url="https://upload.wikimedia.org/wikipedia/fr/thumb/4/43/Logo_Olympique_de_Marseille.svg/189px-Logo_Olympique_de_Marseille.svg.png";
+    }
+
+    //Then we generate the text for the club
+
+	var name=data.name;
+	var founded=data.founded;
+	var venue=data.venue;
+	var website=data.website;
+
+
+	var return_string = "The "+ name + " was founded in " + founded;
+	return_string += ". Its official stadium is " + venue;
+	return_string += ".\nWebsite: " + website;
+
+	return [image_url,return_string];
+}
+
 exports.teamComposition = (data,position) => { //position should be a valid string (in upper case)
 	name=data.name
-
-	
-
 	var i;
 	num_results= data.squad.length
 

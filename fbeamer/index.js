@@ -147,6 +147,41 @@ class FBeamer{
         return this.sendMessage(obj);
     }
 
+    sendImageMessage(id_sender, image_url, messaging_type = 'RESPONSE') {
+        return new Promise (( resolve , reject ) => {
+        let data = 
+            { 
+              "attachment":{
+                "type":"image",
+                "payload":{
+                  "url":image_url
+                }
+              }
+            }
+        request({
+            uri: `https://graph.facebook.com/${apiVersion}/me/messages`,
+            qs:{
+                    access_token : this.pageAccessToken
+            },
+            method: 'POST',
+            json: {
+                recipient: {id:id_sender},
+                message: data,
+            }
+        }, (error, response, body) => {
+                if (!error && response.statusCode === 200) {
+                    console.log("image sent!");
+                    resolve({
+                        mid: body . message_id
+                    });
+
+                } else {
+                    console.log("image error 😰!");
+                    reject(error);
+                }
+            });
+        });
+    }
 
 }
 
