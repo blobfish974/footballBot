@@ -9,7 +9,7 @@ exports.topScorers= (data) => {
 	scorers=data.scorers
 	num_results= scorers.length
 	var return_string="";
-	return_string+= "⚽️ The top scorers of "+ligue+ " are: \n";
+	return_string+= "The top scorers of "+ligue+ " are: \n";
 	var i;
 	for (i = 0; i < num_results; i++) {
 		name=scorers[i].player.name
@@ -25,7 +25,7 @@ exports.bestScorer = (data) => {
 
 	ligue=data.competition.name
 	scorers=data.scorers
-	var return_string= "⚽️🥇  The best scorer of "+ ligue + " is: \n";
+	var return_string= "The best scorer of "+ ligue + " is: \n";
 
 	name=scorers[0].player.name
 	num_goals=scorers[0].numberOfGoals
@@ -39,7 +39,7 @@ exports.bestScorer = (data) => {
 exports.ligueStandings= data => {
 
 	ligue=data.competition.name
-	var return_string= "🏆 The "+ ligue + " standing is: \n";
+	var return_string= "The "+ ligue + " standing is: \n";
 	
 	var i;
 	num_results= data.standings[0].table.length

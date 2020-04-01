@@ -116,7 +116,7 @@ server.post('/', (req, res, next) => {
                     switch(intent){
 
                         case "league standing":
-                        await f.txt(data.sender, "I'm searching for the "+ league_found +" standing... 🔎");
+                        await f.txt(data.sender, "I'm searching for the "+ league_found +" standing... 🏆");
                             sandbox_standing.league_standing(league).then( async res => {
                                 await f.txt(data.sender, res);
                             });
@@ -130,14 +130,14 @@ server.post('/', (req, res, next) => {
                             break;
                         
                         case "top scorers":
-                            await f.txt(data.sender, "I'm searching for the "+ league_found +" top scorers...");
+                            await f.txt(data.sender, "I'm searching for the "+ league_found +" top scorers... ⚽️");
                             sandbox_scorer.top_scorers(league).then( async res => { 
                                 await f.txt(data.sender, res);
                             });
                             break;
                         
                         case "top scorer":
-                            await f.txt(data.sender, "I'm searching for the "+ league_found +" best scorer...");
+                            await f.txt(data.sender, "I'm searching for the "+ league_found +" best scorer... ⚽️🥇");
                                 sandbox_scorer.top_scorer(league).then( async res => {
                                     await f.txt(data.sender, res);
                                 });

@@ -15,7 +15,7 @@
 
 This chatbot answers football statistics in general. You can find a complete description of its functionnalities under the next chapter.
 
-Here is the link to our Faceboook Page: [Footbal Bot](https://www.facebook.com/Football-Bot-110345200596257).
+Here is the link to our Faceboook Page: [Football Bot](https://www.facebook.com/Football-Bot-110345200596257).
 
 If you want to try our chatbot, you can reach and ask us. We will be pleased to grant you an acces.
 
@@ -78,6 +78,9 @@ And the following teams:
 
 Our chatbot is currently deployed online using Heroku. You can normally chat with it without doing the following steps.
 However, these are usefull if you want you are coding new features.
+
+Link to heroku app: [Football-chatbot.herokuapp.com/](https://footballbot-chatbot.herokuapp.com/).
+
 
 #### Launch the server 🔌
 
